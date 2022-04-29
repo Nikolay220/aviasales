@@ -55,5 +55,11 @@
     "lint-staged": "^12.3.7",
     "node-sass": "^7.0.1",
     "prettier": "^2.6.2"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:fix",
+      "npm run format"
+    ]
   }
 }

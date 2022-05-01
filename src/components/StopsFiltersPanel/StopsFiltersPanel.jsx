@@ -28,18 +28,10 @@ const StopsFiltersPanel = () => {
   return (
     <div className={`${classes['filters']}`}>
       <div className={classes['header']}>количество пересадок</div>
-      <Checkbox
-        indeterminate={indeterminate}
-        onChange={onCheckAllChange}
-        checked={checkAll}
-      >
+      <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
         Все
       </Checkbox>
-      <CheckboxGroup
-        value={checkedList}
-        onChange={onChange}
-        options={plainOptions}
-      />
+      <CheckboxGroup value={checkedList} onChange={onChange} options={plainOptions} />
     </div>
   )
 }

@@ -1,20 +1,20 @@
 .main-panel {
   margin-bottom: 65px;
-  @media screen and (max-width:750px) {
-    margin:auto;
+  @media screen and (max-width: 750px) {
+    margin: auto;
     margin-top: 10px;
     margin-bottom: 65px;
   }
-  @media screen and (max-width:504px) {
-    width:100%;
-  }  
+  @media screen and (max-width: 504px) {
+    width: 100%;
+  }
 }
 
-.btn{
-  color: #FFFFFF;
-  height:40px;
+.btn {
+  color: #ffffff;
+  height: 40px;
   text-transform: uppercase;
-  font-family: 'Open Sans',sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;

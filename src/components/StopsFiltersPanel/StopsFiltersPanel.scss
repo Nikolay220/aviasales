@@ -1,56 +1,57 @@
-.ant-checkbox{
-  top:0;
+.ant-checkbox {
+  top: 0;
 }
 
 .ant-checkbox-group {
   display: flex;
   flex-direction: column;
   padding-bottom: 10px;
-  @media screen and (max-width:750px){
+  @media screen and (max-width: 750px) {
     flex-direction: row;
     padding-bottom: 0;
   }
-  @media screen and (max-width:644px){
+  @media screen and (max-width: 644px) {
     padding: 10px 0;
     flex-wrap: wrap;
   }
-  @media screen and (max-width:260px){
-    display:block
+  @media screen and (max-width: 260px) {
+    display: block;
   }
 }
-.ant-checkbox-inner{
+.ant-checkbox-inner {
   width: 20px;
   height: 20px;
-  &:after{
-    top:44%;
+  &:after {
+    top: 44%;
     height: 11.142857px;
   }
 }
-.ant-checkbox-wrapper{
-  padding: 10px 20px ;
+.ant-checkbox-wrapper {
+  padding: 10px 20px;
   margin-right: 0px;
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
   line-height: 20px;
-  color: #4A4A4A;
+  color: #4a4a4a;
   display: flex;
   align-items: center;
-  &:hover,&:active{
-    background-color: #F1FCFF;
-    cursor:pointer;
+  &:hover,
+  &:active {
+    background-color: #f1fcff;
+    cursor: pointer;
   }
-  @media screen and (max-width:750px){
-    padding:5px;
+  @media screen and (max-width: 750px) {
+    padding: 5px;
   }
 }
-.ant-checkbox-checked .ant-checkbox-inner{
+.ant-checkbox-checked .ant-checkbox-inner {
   background-color: #fff !important;
 }
-.ant-checkbox-checked .ant-checkbox-inner::after{
-  border-color:#2196F3 !important;
+.ant-checkbox-checked .ant-checkbox-inner::after {
+  border-color: #2196f3 !important;
 }
-.ant-checkbox-indeterminate .ant-checkbox-inner::after{
+.ant-checkbox-indeterminate .ant-checkbox-inner::after {
   background-color: #fff;
 }

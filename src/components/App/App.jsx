@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-
 import Logo from '../Logo'
 import Page from '../Page'
 

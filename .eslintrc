@@ -4,13 +4,7 @@
     "es2021": true
   },
   "ignorePatterns": ["node_modules", "dist", "build"],
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings"
-  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended", "plugin:import/errors", "plugin:import/warnings"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -21,7 +15,8 @@
   "plugins": ["react", "prettier", "import"],
   "rules": {
     "indent": ["error", 2],
-    "prettier/prettier": ["error", { "semi": false, "endOfLine": "lf", "singleQuote": true }],
+    // "prettier/prettier": ["error", { "semi": false, "endOfLine": "lf", "singleQuote": true }],
+    "prettier/prettier":0,
     "linebreak-style": [0, "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "never"],

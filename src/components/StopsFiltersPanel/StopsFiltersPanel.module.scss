@@ -1,0 +1,27 @@
+.filters {
+  width: 232px;
+  background-color: #fff;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  max-height: 252px;
+  @media screen and (max-width:750px){
+    display:flex;
+    width: 100%;
+  }
+  @media screen and (max-width:330px){
+      display:block
+    }
+}
+.header{
+  font-family: 'Open Sans',sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #4A4A4A;
+  padding:20px 20px 10px;
+  display: flex;
+  align-items: center;
+}

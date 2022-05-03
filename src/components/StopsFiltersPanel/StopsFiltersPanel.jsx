@@ -9,12 +9,12 @@ const CheckboxGroup = Checkbox.Group
 import classes from './StopsFiltersPanel.module.scss'
 import './StopsFiltersPanel.scss'
 
-const StopsFiltersPanel = ({checkAll,plainOptions,checkedList,onChange,onCheckAllChange}) => {
+const StopsFiltersPanel = ({ checkAll, plainOptions, checkedList, onChange, onCheckAllChange }) => {
   // const [checkedList, setCheckedList] = React.useState(defaultCheckedList)
   // const [checkAll, setCheckAll] = React.useState(false)
 
   // const onChange = (list) => {
-  //   setCheckedList(list)    
+  //   setCheckedList(list)
   //   setCheckAll(list.length === plainOptions.length)
   // }
 
@@ -25,10 +25,10 @@ const StopsFiltersPanel = ({checkAll,plainOptions,checkedList,onChange,onCheckAl
   return (
     <div className={`${classes['filters']}`}>
       <div className={classes['header']}>количество пересадок</div>
-      <Checkbox onChange={(e)=>onCheckAllChange(e)} checked={checkAll}>
+      <Checkbox onChange={(e) => onCheckAllChange(e)} checked={checkAll}>
         Все
       </Checkbox>
-      <CheckboxGroup value={checkedList} onChange={(list)=>onChange(list)} options={plainOptions} />
+      <CheckboxGroup value={checkedList} onChange={(list) => onChange(list)} options={plainOptions} />
     </div>
   )
 }

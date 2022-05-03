@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button } from 'antd'
 
-import Filters from '../Filters'
+import SortFiltersContainer from '../../containers/SortFiltersContainer'
 import TicketsList from '../TicketsList'
 
 // MainPanel делает загрузку
@@ -13,7 +13,7 @@ export default class MainPanel extends Component {
   render() {
     return (
       <div className={classes['main-panel']}>
-        <Filters />
+        <SortFiltersContainer />
         <TicketsList />
         <Button block="true" type="primary" className={classes['btn']}>
           показать ещё 5 билетов!

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import StopsFiltersPanel from '../StopsFiltersPanel'
+import StopsFiltersContainer from '../../containers/StopsFiltersContainer'
 import MainPanel from '../MainPanel'
 
 import classes from './Page.module.scss'
@@ -11,7 +11,7 @@ export default class Page extends Component {
   render() {
     return (
       <div className={classes['page']}>
-        <StopsFiltersPanel />
+        <StopsFiltersContainer />
         <MainPanel />
       </div>
     )

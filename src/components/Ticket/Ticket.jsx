@@ -38,21 +38,9 @@ class Ticket extends Component {
   }
   render() {
     const f = this.appController.classesToCssModulesFormat.bind(this.appController)
-    let {
-      origin: origin_there,
-      destination: destination_there,
-      date: date_there,
-      stops: stops_there,
-      duration: duration_there,
-    } = this.props.ticket.segments[0] 
+    let { origin: origin_there, destination: destination_there, date: date_there, stops: stops_there, duration: duration_there } = this.props.ticket.segments[0]
     // { origin: 'MOW', destination: 'HKT', date: '2022-10-08T06:32:30.353Z', stops: ['HKG', 'JNB'], duration: 614 }
-    let {
-      origin: origin_back,
-      destination: destination_back,
-      date: date_back,
-      stops: stops_back,
-      duration: duration_back,
-    } = this.props.ticket.segments[1]
+    let { origin: origin_back, destination: destination_back, date: date_back, stops: stops_back, duration: duration_back } = this.props.ticket.segments[1]
     // { origin: 'HKT', destination: 'MOW', date: '2023-04-21T02:42:31.235Z', duration: 1168, stops: ['IST', 'JNB', 'HKG'] }
     date_there = new Date(date_there)
     date_back = new Date(date_back)

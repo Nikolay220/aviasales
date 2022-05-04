@@ -8,11 +8,11 @@ import classes from './App.module.scss'
 
 class App extends Component {
   constructor(props) {
-    super(props)    
+    super(props)
   }
-  
+
   render() {
-    if(this.props.ticketsAreFetcing) return <CustomSpinner />
+    if (this.props.ticketsAreFetcing) return <CustomSpinner />
     return (
       <div className={classes['app']}>
         <Logo />

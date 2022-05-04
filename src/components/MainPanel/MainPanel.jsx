@@ -4,7 +4,6 @@ import SortFiltersContainer from '../../containers/SortFiltersContainer'
 import ShowTicketsBtn from '../../containers/ShowTicketsBtn'
 import TicketsListContainer from '../../containers/TicketsListContainer'
 
-
 import classes from './MainPanel.module.scss'
 export default class MainPanel extends Component {
   constructor(props) {

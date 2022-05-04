@@ -2,22 +2,17 @@ import React, { Component } from 'react'
 
 import Logo from '../Logo'
 import Page from '../Page'
+import CustomSpinner from '../CustomSpinner'
 
 import classes from './App.module.scss'
-// import AviasalesApiService from '../../services/AviasalesApiService'
+
 class App extends Component {
   constructor(props) {
-    super(props)
-    // this.apiService = new AviasalesApiService()
+    super(props)    
   }
-  componentDidMount() {
-    // this.apiService.getSearchId().then((searchId) => {
-    //   this.apiService.getTickets(searchId).then((data) => {
-    //     console.log(data)
-    //   })
-    // })
-  }
+  
   render() {
+    if(this.props.ticketsAreFetcing) return <CustomSpinner />
     return (
       <div className={classes['app']}>
         <Logo />

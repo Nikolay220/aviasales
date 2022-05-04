@@ -44,14 +44,16 @@ class Ticket extends Component {
       date: date_there,
       stops: stops_there,
       duration: duration_there,
-    } = { origin: 'MOW', destination: 'HKT', date: '2022-10-08T06:32:30.353Z', stops: ['HKG', 'JNB'], duration: 614 }
+    } = this.props.ticket.segments[0] 
+    // { origin: 'MOW', destination: 'HKT', date: '2022-10-08T06:32:30.353Z', stops: ['HKG', 'JNB'], duration: 614 }
     let {
       origin: origin_back,
       destination: destination_back,
       date: date_back,
       stops: stops_back,
       duration: duration_back,
-    } = { origin: 'HKT', destination: 'MOW', date: '2023-04-21T02:42:31.235Z', duration: 1168, stops: ['IST', 'JNB', 'HKG'] }
+    } = this.props.ticket.segments[1]
+    // { origin: 'HKT', destination: 'MOW', date: '2023-04-21T02:42:31.235Z', duration: 1168, stops: ['IST', 'JNB', 'HKG'] }
     date_there = new Date(date_there)
     date_back = new Date(date_back)
     let [hours_there, mins_there] = this.getHoursAndMins(date_there)
@@ -59,8 +61,8 @@ class Ticket extends Component {
     return (
       <div className={f('ticket')}>
         <div className={f('ticket__header')}>
-          <div className={f('ticket__price')}>13 400 Р </div>
-          <img src="./images/s7_logo.png" alt="" />
+          <div className={f('ticket__price')}>{`${this.props.ticket.price} Р `}</div>
+          <img src={`https://pics.avs.io/99/36/${this.props.ticket.carrier}.png`} alt="" />
         </div>
         <div className={f('info ticket__info')}>
           <div className={f('info__item from-to')}>

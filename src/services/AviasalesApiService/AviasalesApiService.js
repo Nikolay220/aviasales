@@ -20,7 +20,7 @@ class AviasalesApiService {
   async getTickets(searchId) {
     const response = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
     const data = await response.json()
-    return data
+    return data.tickets
   }
 }
 export default AviasalesApiService

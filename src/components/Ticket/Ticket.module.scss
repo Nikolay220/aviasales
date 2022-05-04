@@ -14,11 +14,7 @@
   }
   &__info {
     display: flex;
-    justify-content: space-between;
-    &--there {
-    }
-    &--back {
-    }
+    justify-content: space-between;    
   }
   &__price {
     font-family: 'Open Sans', sans-serif;
@@ -53,5 +49,6 @@
     line-height: 21px;
     color: #4a4a4a;
     margin-bottom: 10px;
+    min-height: 21px;
   }
 }

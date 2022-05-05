@@ -1,3 +1,4 @@
+import fetch from 'cross-fetch'
 class AviasalesApiService {
   constructor() {
     this._searchId = null
@@ -18,9 +19,29 @@ class AviasalesApiService {
     return this._searchId
   }
   async getTickets(searchId) {
-    const response = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
-    const data = await response.json()
-    return data.tickets
+    try {
+      let data = null
+      const response = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
+      if (response.ok) {
+        data = await response.json()
+        return data
+      } else {
+        return this.getTickets(searchId)
+      }
+    } catch (error) {
+      console.log(error)
+      return this.getTickets(searchId)
+    }
+  }
+  async getAllTickets() {
+    let allTickets = []
+    let data = { stop: false, tickets: [] }
+    const searchId = await this.getSearchId()
+    while (!data.stop) {
+      allTickets = allTickets.concat(data.tickets)
+      data = await this.getTickets(searchId)
+    }
+    return allTickets
   }
 }
 export default AviasalesApiService

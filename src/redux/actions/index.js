@@ -45,8 +45,11 @@ const apiService = new AviasalesApiService()
 function fetchTickets() {
   return (dispatch) => {
     dispatch(requestTickets())
-    return apiService.getSearchId().then((searchId) => {
-      apiService.getTickets(searchId).then((tickets) => dispatch(receiveTickets(tickets)))
+    // return apiService.getSearchId().then((searchId) => {
+    //   return apiService.getTickets(searchId).then((data) => {dispatch(receiveTickets(data.tickets))})
+    // })
+    return apiService.getAllTickets().then((tickets) => {
+      dispatch(receiveTickets(tickets))
     })
   }
 }
@@ -68,8 +71,6 @@ export function fetchTicketsIfNeeded() {
     dispatch(increaseDisplayedTicketsNumber())
     if (shouldFetchTickets(getState())) {
       return dispatch(fetchTickets())
-    } else {
-      return Promise.resolve()
     }
   }
 }

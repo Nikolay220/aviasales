@@ -12,6 +12,9 @@ import 'antd/dist/antd.min.css'
 import './index.scss'
 import AppContainer from './containers/AppContainer'
 
+window.onerror = function (message, url, lineNumber) {
+  alert('Поймана ошибка, выпавшая в глобальную область!\n' + 'Сообщение: ' + message + '\n(' + url + ':' + lineNumber + ')')
+}
 const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose
 
 const loggerMiddleware = createLogger()

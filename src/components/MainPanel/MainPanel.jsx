@@ -7,7 +7,7 @@ import TicketsListContainer from '../../containers/TicketsListContainer'
 import classes from './MainPanel.module.scss'
 export default class MainPanel extends Component {
   constructor(props) {
-    super(props)  
+    super(props)
   }
   render() {
     return (

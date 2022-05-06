@@ -1,6 +1,7 @@
 import { Spin } from 'antd'
 
 import styles from './CustomSpinner.module.scss'
+import './CustomSpinner.scss'
 
 export default function CustomSpinner() {
   return (

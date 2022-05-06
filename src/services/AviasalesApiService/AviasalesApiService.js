@@ -33,10 +33,10 @@ class AviasalesApiService {
       return this.getTickets(searchId)
     }
   }
-  async getAllTickets() {
+  async getAllTickets(searchId, ticketsAreOver) {
     let allTickets = []
-    let data = { stop: false, tickets: [] }
-    const searchId = await this.getSearchId()
+    let data = { stop: ticketsAreOver, tickets: [] }
+    // const searchId = await this.getSearchId()
     while (!data.stop) {
       allTickets = allTickets.concat(data.tickets)
       data = await this.getTickets(searchId)

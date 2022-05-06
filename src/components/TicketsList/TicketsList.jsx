@@ -14,9 +14,9 @@ class TicketsList extends Component {
       return components
     }
   }
-  render() {
-    let { displayedTickets, isFetching, tickets } = this.props.ticketsList
-    if (!isFetching) return <Fragment>{this.generateTickets(displayedTickets, tickets)}</Fragment>
+  render() {   
+    let { displayedTickets, tickets } = this.props.ticketsList
+    return <Fragment>{this.generateTickets(displayedTickets, tickets)}</Fragment>
   }
 }
 

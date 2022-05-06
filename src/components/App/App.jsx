@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Logo from '../Logo'
 import Page from '../Page'
-import CustomSpinner from '../CustomSpinner'
+// import CustomSpinner from '../CustomSpinner'
 
 import classes from './App.module.scss'
 
@@ -12,7 +12,9 @@ class App extends Component {
   }
 
   render() {
-    if (this.props.ticketsAreFetcing) return <CustomSpinner />
+    
+    // debugger
+    // if (this.props.ticketsAreFetcing) return <CustomSpinner />
     return (
       <div className={classes['app']}>
         <Logo />

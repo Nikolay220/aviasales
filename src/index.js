@@ -10,7 +10,7 @@ import { fetchTicketsIfNeeded } from './redux/actions'
 import app from './redux/reducers'
 import 'antd/dist/antd.min.css'
 import './index.scss'
-import AppContainer from './containers/AppContainer'
+import App from './components/App'
 
 window.onerror = function (message, url, lineNumber) {
   alert('Поймана ошибка, выпавшая в глобальную область!\n' + 'Сообщение: ' + message + '\n(' + url + ':' + lineNumber + ')')
@@ -26,6 +26,6 @@ const rootContainer = document.getElementById('root')
 const root = ReactDOMClient.createRoot(rootContainer)
 root.render(
   <Provider store={store}>
-    <AppContainer />
+    <App />
   </Provider>
 )

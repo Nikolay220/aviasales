@@ -12,7 +12,6 @@ class App extends Component {
   }
 
   render() {
-    
     // debugger
     // if (this.props.ticketsAreFetcing) return <CustomSpinner />
     return (

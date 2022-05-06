@@ -14,7 +14,7 @@ class TicketsList extends Component {
       return components
     }
   }
-  render() {   
+  render() {
     let { displayedTickets, tickets } = this.props.ticketsList
     return <Fragment>{this.generateTickets(displayedTickets, tickets)}</Fragment>
   }

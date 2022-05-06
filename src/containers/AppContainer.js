@@ -1,9 +1,9 @@
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
-import App from '../components/App'
+// import App from '../components/App'
 
-const mapStateToProps = (state) => {
-  return { ticketsAreFetcing: state.ticketsList.isFetching }
-}
+// const mapStateToProps = (state) => {
+//   return { ticketsAreFetcing: state.ticketsList.isFetching }
+// }
 
-export default connect(mapStateToProps)(App)
+// export default connect(mapStateToProps)(App)

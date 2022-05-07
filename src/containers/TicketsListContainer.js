@@ -5,6 +5,7 @@ import TicketsList from '../components/TicketsList'
 const mapStateToProps = (state) => {
   return {
     ticketsList: state.ticketsList,
+    stopsCheckboxesNames: state.stopsCheckboxesNames,
   }
 }
 

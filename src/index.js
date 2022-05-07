@@ -4,7 +4,6 @@ import { Provider } from 'react-redux'
 import { legacy_createStore as createStore, applyMiddleware, compose } from 'redux'
 import '@babel/polyfill'
 import thunkMiddleware from 'redux-thunk'
-import { createLogger } from 'redux-logger'
 
 import { fetchTicketsIfNeeded } from './redux/actions'
 import app from './redux/reducers'
@@ -17,9 +16,7 @@ window.onerror = function (message, url, lineNumber) {
 }
 const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose
 
-const loggerMiddleware = createLogger()
-
-const store = createStore(app, composeEnhancers(applyMiddleware(thunkMiddleware, loggerMiddleware)))
+const store = createStore(app, composeEnhancers(applyMiddleware(thunkMiddleware)))
 
 store.dispatch(fetchTicketsIfNeeded())
 const rootContainer = document.getElementById('root')

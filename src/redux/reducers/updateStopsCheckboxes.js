@@ -1,10 +1,10 @@
-import { update_stops_checkboxes, update_check_all_checkbox } from '../actions'
-export default function updateStopsCheckboxes(state = { checkedCheckboxes: [], checkedAllCheckbox: false }, action) {
+import { UPDATE_STOPS_CHECKBOXES, UPDATE_CHECK_ALL_CHECKBOX, stopsFilters } from '../actions'
+export default function updateStopsCheckboxes(state = { checkedCheckboxesNames: Object.values(stopsFilters), checkedAllCheckbox: true }, action) {
   switch (action.type) {
-    case update_stops_checkboxes:
-      return { checkedCheckboxes: action.checkboxes, checkedAllCheckbox: state.checkedAllCheckbox }
-    case update_check_all_checkbox:
-      return { checkedCheckboxes: state.checkedCheckboxes, checkedAllCheckbox: action.checkbox }
+    case UPDATE_STOPS_CHECKBOXES:
+      return { checkedCheckboxesNames: action.checkedCheckboxesNames, checkedAllCheckbox: state.checkedAllCheckbox }
+    case UPDATE_CHECK_ALL_CHECKBOX:
+      return { checkedCheckboxesNames: state.checkedCheckboxesNames, checkedAllCheckbox: action.isChecked }
     default:
       return state
   }

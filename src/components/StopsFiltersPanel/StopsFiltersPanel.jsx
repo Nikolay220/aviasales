@@ -1,34 +1,25 @@
 import React from 'react'
 import { Checkbox } from 'antd'
 
-const CheckboxGroup = Checkbox.Group
-
-// const plainOptions = ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки']
-// const defaultCheckedList = []
+import FiltersSpinner from '../FiltersSpinner'
 
 import classes from './StopsFiltersPanel.module.scss'
+
 import './StopsFiltersPanel.scss'
 
-const StopsFiltersPanel = ({ checkAll, plainOptions, checkedList, onChange, onCheckAllChange }) => {
-  // const [checkedList, setCheckedList] = React.useState(defaultCheckedList)
-  // const [checkAll, setCheckAll] = React.useState(false)
+const CheckboxGroup = Checkbox.Group
 
-  // const onChange = (list) => {
-  //   setCheckedList(list)
-  //   setCheckAll(list.length === plainOptions.length)
-  // }
 
-  // const onCheckAllChange = (e) => {
-  //   setCheckedList(e.target.checked ? plainOptions : [])
-  //   setCheckAll(e.target.checked)
-  // }
+
+const StopsFiltersPanel = ({ticketsAreFetching, checkAll, plainOptions, checkedList, onChange, onCheckAllChange }) => {
   return (
     <div className={`${classes['filters']}`}>
+      {ticketsAreFetching && <FiltersSpinner />}
       <div className={classes['header']}>количество пересадок</div>
-      <Checkbox onChange={(e) => onCheckAllChange(e)} checked={checkAll}>
+      <Checkbox disabled={ticketsAreFetching} onChange={(e) => onCheckAllChange(e)} checked={checkAll}>
         Все
       </Checkbox>
-      <CheckboxGroup value={checkedList} onChange={(list) => onChange(list)} options={plainOptions} />
+      <CheckboxGroup disabled={ticketsAreFetching} value={checkedList} onChange={(list) => onChange(list)} options={plainOptions} />
     </div>
   )
 }

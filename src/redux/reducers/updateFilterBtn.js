@@ -1,7 +1,7 @@
-import { change_sort_filter, sortFilters } from '../actions'
+import { CHANGE_SORT_FILTER, sortFilters } from '../actions'
 export default function updateFilterBtn(state = sortFilters.cheapest, action) {
   switch (action.type) {
-    case change_sort_filter:
+    case CHANGE_SORT_FILTER:
       return action.filter
     default:
       return state

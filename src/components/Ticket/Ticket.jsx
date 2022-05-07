@@ -55,9 +55,9 @@ class Ticket extends Component {
         <div className={f('info ticket__info')}>
           <div className={f('info__item from-to')}>
             <div className={f('info__header')}>{`${origin_there}-${destination_there}`}</div>
-            <div className={f('info__value')}>{`${hours_there}:${mins_there}-${this.getArrivalTime(date_there, duration_there)}`}</div>
+            <div className={f('info__value')}>{`${this.withLeftZero(hours_there)}:${this.withLeftZero(mins_there)}-${this.getArrivalTime(date_there, duration_there)}`}</div>
             <div className={f('info__header')}>{`${origin_back}-${destination_back}`}</div>
-            <div className={f('info__value')}>{`${hours_back}:${mins_back}-${this.getArrivalTime(date_back, duration_back)}`}</div>
+            <div className={f('info__value')}>{`${this.withLeftZero(hours_back)}:${this.withLeftZero(mins_back)}-${this.getArrivalTime(date_back, duration_back)}`}</div>
           </div>
           <div className={f('info__item duration')}>
             <div className={f('info__header')}>в пути</div>

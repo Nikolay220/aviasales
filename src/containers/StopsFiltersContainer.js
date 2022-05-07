@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
 
-import { updateStopsCheckboxes, updateCheckAllCheckbox } from '../redux/actions'
+import { updateStopsCheckboxes, updateCheckAllCheckbox, stopsFilters } from '../redux/actions'
 import StopsFiltersPanel from '../components/StopsFiltersPanel'
-const plainOptions = ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки']
+const plainOptions = Object.values(stopsFilters)
 const mapStateToProps = (state) => {
   return {
-    checkAll: state.stopsCheckboxes.checkedAllCheckbox,
+    checkAll: state.stopsCheckboxesNames.checkedAllCheckbox,
     plainOptions,
-    checkedList: state.stopsCheckboxes.checkedCheckboxes,
+    checkedList: state.stopsCheckboxesNames.checkedCheckboxesNames,
+    ticketsAreFetching: state.ticketsList.isFetching,
   }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -4,7 +4,7 @@ import updateTicketsList from './updateTicketsList'
 export default function app(state = {}, action) {
   return {
     sortFilter: updateFilterBtn(state.sortFilter, action),
-    stopsCheckboxes: updateStopsCheckboxes(state.stopsCheckboxes, action),
+    stopsCheckboxesNames: updateStopsCheckboxes(state.stopsCheckboxesNames, action),
     ticketsList: updateTicketsList(state.ticketsList, action),
   }
 }

@@ -4,6 +4,7 @@
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   max-height: 252px;
+  position: relative;
   @media screen and (max-width: 750px) {
     display: flex;
     width: 100%;

@@ -1,8 +1,7 @@
-// const changeFilter='change_filter'
 import AviasalesApiService from '../../services/AviasalesApiService'
-export const change_sort_filter = 'change_sort_filter'
-export const update_stops_checkboxes = 'update_stops_checkboxes'
-export const update_check_all_checkbox = 'update_check_all_checkbox'
+export const CHANGE_SORT_FILTER = 'CHANGE_SORT_FILTER'
+export const UPDATE_STOPS_CHECKBOXES = 'UPDATE_STOPS_CHECKBOXES'
+export const UPDATE_CHECK_ALL_CHECKBOX = 'UPDATE_CHECK_ALL_CHECKBOX'
 
 export const sortFilters = {
   cheapest: 'cheapest',
@@ -10,16 +9,23 @@ export const sortFilters = {
   optimal: 'optimal',
 }
 
+export const stopsFilters = {
+  noStops: 'Без пересадок',
+  oneStop: '1 пересадка',
+  twoStops: '2 пересадки',
+  threeStops: '3 пересадки',
+}
+
 export function changeSortFilter(filter) {
-  return { type: change_sort_filter, filter }
+  return { type: CHANGE_SORT_FILTER, filter }
 }
 
-export function updateStopsCheckboxes(checkboxes) {
-  return { type: update_stops_checkboxes, checkboxes }
+export function updateStopsCheckboxes(checkedCheckboxesNames) {
+  return { type: UPDATE_STOPS_CHECKBOXES, checkedCheckboxesNames }
 }
 
-export function updateCheckAllCheckbox(checkbox) {
-  return { type: update_check_all_checkbox, checkbox }
+export function updateCheckAllCheckbox(isChecked) {
+  return { type: UPDATE_CHECK_ALL_CHECKBOX, isChecked }
 }
 
 export const INCREASE_DISPLAYED_TICKETS_NUMBER = 'INCREASE_DISPLAYED_TICKETS_NUMBER'
@@ -49,57 +55,34 @@ function receiveOtherTickets(tickets) {
     tickets,
   }
 }
+
 const apiService = new AviasalesApiService()
 
 async function getFirstAndOthers(dispatch) {
   const searchId = await apiService.getSearchId()
   dispatch(requestTickets())
   const firstBundle = await apiService.getTickets(searchId)
-  dispatch((dispatch) => dispatch(receiveTickets(firstBundle.tickets)))
+  dispatch((dispatch, getState) => {
+    dispatch(receiveTickets(firstBundle.tickets))
+    dispatch(changeSortFilter(getState().sortFilter))
+  })
   dispatch((dispatch) => dispatch(increaseDisplayedTicketsNumber()))
   dispatch((dispatch) => dispatch(requestTickets()))
   const others = await apiService.getAllTickets(searchId, firstBundle.stop)
-  dispatch(receiveOtherTickets(others))
+  dispatch((dispatch, getState) => {
+    dispatch(receiveOtherTickets(others))
+    dispatch(changeSortFilter(getState().sortFilter))
+  })
 }
-
-// async function getFirst(dispatch){
-//   dispatch(requestTickets())
-//   const searchId = await apiService.getSearchId()
-//   const firstBundle = await apiService.getTickets(searchId)
-//   dispatch(receiveTickets(firstBundle.tickets))
-
-// }
 
 function fetchTickets() {
   return (dispatch) => {
     getFirstAndOthers(dispatch)
-    // dispatch(requestTickets())
-    // apiService.getSearchId().then((searchId) => {
-    //   return apiService.getTickets(searchId).then((data) => {dispatch(receiveTickets(data.tickets))})
-    // })
-    // return apiService.getAllTickets().then((tickets) => {
-    //   dispatch(receiveTickets(tickets))
-    // })
   }
 }
 
-// function shouldFetchTickets(state) {
-//   const ticketList = state.ticketsList
-//   if (ticketList.tickets.length === 0) {
-//     return true
-//   } else if (ticketList.isFetching) {
-//     return false
-//   } else if (ticketList.tickets.length < ticketList.displayedTickets) {
-//     return true
-//   }
-//   return false
-// }
-
 export function fetchTicketsIfNeeded() {
   return (dispatch) => {
-    // dispatch(increaseDisplayedTicketsNumber())
-    // if (shouldFetchTickets(getState())) {
     return dispatch(fetchTickets())
-    // }
   }
 }

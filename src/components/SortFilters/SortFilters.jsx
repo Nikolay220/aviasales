@@ -1,23 +1,27 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import { Radio } from 'antd'
 
 import './SortFilters.scss'
 import { sortFilters } from '../../redux/actions'
+import FiltersSpinner from '../FiltersSpinner'
 
 import classes from './SortFilters.module.scss'
-const SortFilters = ({ curFilter, onClick }) => {
+const SortFilters = ({ticketsAreFetching,curFilter, onClick }) => {
   return (
-    <Radio.Group className={classes['sort-filters']} value={curFilter} defaultValue={curFilter} buttonStyle="solid">
-      <Radio.Button onClick={() => onClick(sortFilters.cheapest)} value={sortFilters.cheapest}>
+    <Fragment>
+      <Radio.Group disabled={ticketsAreFetching} className={classes['sort-filters']} value={curFilter} defaultValue={curFilter} buttonStyle="solid">
+        {ticketsAreFetching && <FiltersSpinner />}
+        <Radio.Button onClick={() => onClick(sortFilters.cheapest)} value={sortFilters.cheapest}>
         самый дешёвый
-      </Radio.Button>
-      <Radio.Button onClick={() => onClick(sortFilters.fastest)} value={sortFilters.fastest}>
+        </Radio.Button>
+        <Radio.Button onClick={() => onClick(sortFilters.fastest)} value={sortFilters.fastest}>
         самый быстрый
-      </Radio.Button>
-      <Radio.Button onClick={() => onClick(sortFilters.optimal)} value={sortFilters.optimal}>
+        </Radio.Button>
+        <Radio.Button onClick={() => onClick(sortFilters.optimal)} value={sortFilters.optimal}>
         оптимальный
-      </Radio.Button>
-    </Radio.Group>
+        </Radio.Button>
+      </Radio.Group>
+    </Fragment>
   )
 }
 export default SortFilters

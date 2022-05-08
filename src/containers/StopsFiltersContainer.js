@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
     checkAll: state.stopsCheckboxesNames.checkedAllCheckbox,
     plainOptions,
     checkedList: state.stopsCheckboxesNames.checkedCheckboxesNames,
-    ticketsAreFetching: state.ticketsList.isFetching,
+    ticketsInStore: state.ticketsList.tickets.length === 0 ? false : true,
   }
 }
 const mapDispatchToProps = (dispatch) => {

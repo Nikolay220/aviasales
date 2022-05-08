@@ -9,17 +9,15 @@ import './StopsFiltersPanel.scss'
 
 const CheckboxGroup = Checkbox.Group
 
-
-
-const StopsFiltersPanel = ({ticketsAreFetching, checkAll, plainOptions, checkedList, onChange, onCheckAllChange }) => {
+const StopsFiltersPanel = ({ ticketsInStore, checkAll, plainOptions, checkedList, onChange, onCheckAllChange }) => {
   return (
     <div className={`${classes['filters']}`}>
-      {ticketsAreFetching && <FiltersSpinner />}
+      {!ticketsInStore && <FiltersSpinner />}
       <div className={classes['header']}>количество пересадок</div>
-      <Checkbox disabled={ticketsAreFetching} onChange={(e) => onCheckAllChange(e)} checked={checkAll}>
+      <Checkbox disabled={!ticketsInStore} onChange={(e) => onCheckAllChange(e)} checked={checkAll}>
         Все
       </Checkbox>
-      <CheckboxGroup disabled={ticketsAreFetching} value={checkedList} onChange={(list) => onChange(list)} options={plainOptions} />
+      <CheckboxGroup disabled={!ticketsInStore} value={checkedList} onChange={(list) => onChange(list)} options={plainOptions} />
     </div>
   )
 }

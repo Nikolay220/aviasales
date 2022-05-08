@@ -12,8 +12,6 @@ class App extends Component {
   }
 
   render() {
-    // debugger
-    // if (this.props.ticketsAreFetcing) return <CustomSpinner />
     return (
       <div className={classes['app']}>
         <Logo />

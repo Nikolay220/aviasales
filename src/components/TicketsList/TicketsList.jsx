@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Alert } from 'antd'
 
 // import CustomSpinner from '../CustomSpinner'
 import Ticket from '../Ticket'
@@ -7,39 +8,63 @@ let id = 1
 class TicketsList extends Component {
   constructor(props) {
     super(props)
-    
+
     this.generateTickets = (displayedTickets, tickets, checkedCheckboxesNames) => {
       let filteredTickets = []
-      let localTickets = tickets.map((value)=>{return {...value}})
-      if(localTickets.length)
-        if(checkedCheckboxesNames.length!==4){
-          checkedCheckboxesNames.forEach((value)=>{
+      let localTickets = tickets.map((value) => {
+        return { ...value }
+      })
+      if (localTickets.length)
+        if (checkedCheckboxesNames.length !== 4) {
+          checkedCheckboxesNames.forEach((value) => {
             const num = Number(value.trim().split(' ')[0])
-            if(isNaN(num)){
-              filteredTickets=filteredTickets.concat(localTickets.filter((value)=>{
-                const stops = value.segments[0].stops.length+value.segments[1].stops.length
-                return stops===0
-              }))
+            if (isNaN(num)) {
+              filteredTickets = filteredTickets.concat(
+                localTickets.filter((value) => {
+                  // if (index === 501) return false
+                  const stops = value.segments[0].stops.length + value.segments[1].stops.length
+                  return stops === 0
+                })
+              )
+            } else {
+              filteredTickets = filteredTickets.concat(
+                localTickets.filter((value) => {
+                  const stops = value.segments[0].stops.length + value.segments[1].stops.length
+                  return stops === num
+                })
+              )
             }
-            else{
-              filteredTickets=filteredTickets.concat(localTickets.filter((value)=>{
-                const stops = value.segments[0].stops.length+value.segments[1].stops.length
-                return stops===num
-              }))
-            }
-          })        
+          })
         } else {
-          filteredTickets=localTickets
+          filteredTickets = localTickets
         }
       let components = []
-      for (let i = 0; (i < displayedTickets)&&filteredTickets.length; i++) components.push(<Ticket key={id++} ticket={filteredTickets[i]} />)
+      for (let i = 0; i < displayedTickets && filteredTickets.length; i++) components.push(<Ticket key={id++} ticket={filteredTickets[i]} />)
       return components
     }
   }
   render() {
     let { displayedTickets, tickets } = this.props.ticketsList
-    let {checkedCheckboxesNames}=this.props.stopsCheckboxesNames
-    return <Fragment>{this.generateTickets(displayedTickets, tickets, checkedCheckboxesNames)}</Fragment>
+    let { checkedCheckboxesNames } = this.props.stopsCheckboxesNames
+    let { error, onClose } = this.props
+
+    return (
+      <Fragment>
+        {error && (
+          <Alert
+            style={{ maxWidth: '504px', position: 'fixed', zIndex: '20', top: '10px' }}
+            message="Error"
+            description={'Recommendations: ' + error.checksRecommendations + '. Mess:' + error.message + '.  Error name: ' + error.name + '.  Error stack: ' + error.stack}
+            type="error"
+            error={error.message}
+            banner
+            closable
+            onClose={onClose}
+          />
+        )}
+        {this.generateTickets(displayedTickets, tickets, checkedCheckboxesNames)}
+      </Fragment>
+    )
   }
 }
 

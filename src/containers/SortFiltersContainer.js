@@ -4,7 +4,7 @@ import { changeSortFilter } from '../redux/actions'
 import SortFilters from '../components/SortFilters'
 
 const mapStateToProps = (state) => {
-  return { curFilter: state.sortFilter, ticketsAreFetching: state.ticketsList.isFetching }
+  return { curFilter: state.sortFilter, ticketsInStore: state.ticketsList.tickets.length === 0 ? false : true }
 }
 const mapDispatchToProps = (dispatch) => {
   return {

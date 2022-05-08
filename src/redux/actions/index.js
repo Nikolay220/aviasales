@@ -2,6 +2,8 @@ import AviasalesApiService from '../../services/AviasalesApiService'
 export const CHANGE_SORT_FILTER = 'CHANGE_SORT_FILTER'
 export const UPDATE_STOPS_CHECKBOXES = 'UPDATE_STOPS_CHECKBOXES'
 export const UPDATE_CHECK_ALL_CHECKBOX = 'UPDATE_CHECK_ALL_CHECKBOX'
+export const ERROR_OCCURED = 'ERROR_OCCURED'
+import NoTicketsLoadedError from '../../Errors/NoTicketsLoadedError'
 
 export const sortFilters = {
   cheapest: 'cheapest',
@@ -28,6 +30,9 @@ export function updateCheckAllCheckbox(isChecked) {
   return { type: UPDATE_CHECK_ALL_CHECKBOX, isChecked }
 }
 
+export function updateError(error) {
+  return { type: ERROR_OCCURED, error }
+}
 export const INCREASE_DISPLAYED_TICKETS_NUMBER = 'INCREASE_DISPLAYED_TICKETS_NUMBER'
 export function increaseDisplayedTicketsNumber() {
   return { type: INCREASE_DISPLAYED_TICKETS_NUMBER }
@@ -59,18 +64,34 @@ function receiveOtherTickets(tickets) {
 const apiService = new AviasalesApiService()
 
 async function getFirstAndOthers(dispatch) {
-  const searchId = await apiService.getSearchId()
+  let searchId
+  try {
+    searchId = await apiService.getSearchId()
+  } catch (error) {
+    dispatch(updateError(error))
+  }
   dispatch(requestTickets())
-  const firstBundle = await apiService.getTickets(searchId)
+  let firstBundle
+  try {
+    firstBundle = await apiService.getTickets(searchId)
+  } catch (error) {
+    dispatch(updateError(new NoTicketsLoadedError(error.message)))
+  }
+
   dispatch((dispatch, getState) => {
     dispatch(receiveTickets(firstBundle.tickets))
     dispatch(changeSortFilter(getState().sortFilter))
   })
   dispatch((dispatch) => dispatch(increaseDisplayedTicketsNumber()))
   dispatch((dispatch) => dispatch(requestTickets()))
-  const others = await apiService.getAllTickets(searchId, firstBundle.stop)
+  let others
+  try {
+    others = await apiService.getAllTickets(searchId, firstBundle.stop)
+  } catch (error) {
+    dispatch(updateError(error))
+  }
   dispatch((dispatch, getState) => {
-    dispatch(receiveOtherTickets(others))
+    if (others) dispatch(receiveOtherTickets(others))
     dispatch(changeSortFilter(getState().sortFilter))
   })
 }

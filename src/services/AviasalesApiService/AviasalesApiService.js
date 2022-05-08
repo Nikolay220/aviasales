@@ -1,20 +1,26 @@
 import fetch from 'cross-fetch'
+
+import GetSearchIdError from '../../Errors/GetSearchIdError'
+import GetTicketsError from '../../Errors/GetTicketsError'
 class AviasalesApiService {
   constructor() {
     this._searchId = null
-    // this.getSearchId().then((searchId) => {
-    //   this._searchId = searchId
-    //   this.getTickets(searchId).then((data) => {
-    //     console.log(data)
-    //   })
-    // })
   }
   async getSearchId() {
     if (!this._searchId) {
-      const response = await fetch('https://aviasales-test-api.kata.academy/search')
-      const data = await response.json()
-      this._searchId = data.searchId
-      return data.searchId
+      try {
+        const response = await fetch('https://aviasales-test-api.kata.academy/search')
+        let data = null
+        if (response.ok) {
+          data = await response.json()
+          this._searchId = data.searchId
+          return data.searchId
+        } else {
+          throw new GetSearchIdError(response.ok)
+        }
+      } catch (error) {
+        throw new GetSearchIdError(error.message)
+      }
     }
     return this._searchId
   }
@@ -26,17 +32,17 @@ class AviasalesApiService {
         data = await response.json()
         return data
       } else {
-        return this.getTickets(searchId)
+        // return this.getTickets(searchId)
+        throw new GetTicketsError(response.ok)
       }
     } catch (error) {
-      console.log(error)
-      return this.getTickets(searchId)
+      // return this.getTickets(searchId)
+      throw new GetTicketsError(error.message)
     }
   }
   async getAllTickets(searchId, ticketsAreOver) {
     let allTickets = []
     let data = { stop: ticketsAreOver, tickets: [] }
-    // const searchId = await this.getSearchId()
     while (!data.stop) {
       allTickets = allTickets.concat(data.tickets)
       data = await this.getTickets(searchId)

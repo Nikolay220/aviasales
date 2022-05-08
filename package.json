@@ -38,6 +38,7 @@
     "antd": "^4.19.5",
     "cross-fetch": "^3.1.5",
     "react": "^18.1.0",
+    "react-detect-offline": "^2.4.5",
     "react-dom": "^18.1.0",
     "react-redux": "^8.0.1",
     "react-scripts": "5.0.1",

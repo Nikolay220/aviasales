@@ -31,30 +31,6 @@ export default function updateTicketsList(state = { isFetching: false, tickets: 
         })
       return { ...state, ...{ tickets: localTickets } }
     }
-    // case UPDATE_STOPS_CHECKBOXES:{
-    //   let filteredTickets = []
-    //   let localTickets = state.tickets.map((value)=>{return {...value}})
-    //   if(action.checkedCheckboxesNames.length!==4){
-    //     action.checkedCheckboxesNames.forEach((value)=>{
-    //       const num = Number(value.trim().split(' ')[0])
-    //       if(isNaN(num)){
-    //         filteredTickets.push(localTickets.filter((value)=>{
-    //           const stops = value.segments[0].stops.length+value.segments[1].stops.length
-    //           return stops===0
-    //         }))
-    //       }
-    //       else{
-    //         filteredTickets.push(localTickets.filter((value)=>{
-    //           const stops = value.segments[0].stops.length+value.segments[1].stops.length
-    //           return stops===num
-    //         }))
-    //       }
-    //     })
-    //     return {...state,...{tickets:filteredTickets}}
-    //   } else {
-
-    //   }
-    // }
     default:
       return state
   }

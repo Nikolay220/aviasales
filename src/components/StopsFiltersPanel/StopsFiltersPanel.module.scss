@@ -6,6 +6,8 @@
   max-height: 252px;
   position: relative;
   @media screen and (max-width: 750px) {
+    max-width: 504px;
+    margin: auto;
     display: flex;
     width: 100%;
   }

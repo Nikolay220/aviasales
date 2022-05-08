@@ -18,7 +18,6 @@ let ShowTicketsBtn = ({ onClick, displayedTickets, ticketsNumber, ticketsAreFetc
       disabled={displayedTickets >= ticketsNumber}
     >
       {displayedTickets < ticketsNumber ? 'показать ещё 5 билетов!' : ticketsAreFetching ? <CustomSpinner /> : 'билетов больше нет'}
-      {/* <CustomSpinner /> */}
     </Button>
   )
 }

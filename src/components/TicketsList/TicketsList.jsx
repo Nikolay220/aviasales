@@ -8,7 +8,7 @@ let id = 1
 class TicketsList extends Component {
   constructor(props) {
     super(props)
-
+    this.shownTicketsExist=true
     this.generateTickets = (displayedTickets, tickets, checkedCheckboxesNames) => {
       let filteredTickets = []
       let localTickets = tickets.map((value) => {
@@ -40,6 +40,7 @@ class TicketsList extends Component {
         }
       let components = []
       for (let i = 0; i < displayedTickets && filteredTickets.length; i++) components.push(<Ticket key={id++} ticket={filteredTickets[i]} />)
+      this.shownTicketsExist = components.length?true:false
       return components
     }
   }
@@ -63,6 +64,7 @@ class TicketsList extends Component {
           />
         )}
         {this.generateTickets(displayedTickets, tickets, checkedCheckboxesNames)}
+        {!this.shownTicketsExist&&<Alert style={{ maxWidth: '504px', marginBottom:'10px', backgroundColor:'#f5f5f5', textAlign:'center', borderColor:'#1890ff45'}} message="Рейсов, подходящих под заданные фильтры, не найдено" type="success" />}
       </Fragment>
     )
   }

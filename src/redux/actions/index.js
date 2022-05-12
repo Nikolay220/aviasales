@@ -96,14 +96,8 @@ async function getFirstAndOthers(dispatch) {
   })
 }
 
-function fetchTickets() {
+export function fetchTickets() {
   return (dispatch) => {
     getFirstAndOthers(dispatch)
-  }
-}
-
-export function fetchTicketsIfNeeded() {
-  return (dispatch) => {
-    return dispatch(fetchTickets())
   }
 }

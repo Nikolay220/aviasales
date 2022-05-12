@@ -7,7 +7,7 @@ import thunkMiddleware from 'redux-thunk'
 import { Offline, Online } from 'react-detect-offline'
 import { Alert } from 'antd'
 
-import { fetchTicketsIfNeeded } from './redux/actions'
+import { fetchTickets } from './redux/actions'
 import app from './redux/reducers'
 import 'antd/dist/antd.min.css'
 import './index.scss'
@@ -17,7 +17,7 @@ const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_E
 
 const store = createStore(app, composeEnhancers(applyMiddleware(thunkMiddleware)))
 
-store.dispatch(fetchTicketsIfNeeded())
+store.dispatch(fetchTickets())
 const rootContainer = document.getElementById('root')
 const root = ReactDOMClient.createRoot(rootContainer)
 root.render(
